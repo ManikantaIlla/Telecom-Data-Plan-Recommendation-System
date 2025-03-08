@@ -1,0 +1,39 @@
+.heading1{
+    font-size: 28px;
+    font-weight: bold;
+}
+.heading2{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.heading3{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.image {
+    height:100px;
+    width: 200px;
+}
+.text-container {
+    text-align: center;
+}
+.head-container{
+    padding: 10px;
+    margin-top:5px;
+    
+  
+}
+.content-con{
+    width: 80%;
+}
+.content{
+    width: 100%;
+}
+
+.image-con {
+    display: flex;
+    align-items: flex-start;
+    
+}

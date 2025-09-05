@@ -1,36 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import PlanCard from "../components/PlanCard.jsx";
+import { useState } from "react";
+import PlanCard from "../components/PlanCard";
+import { Button } from "@/components/ui/button";
 
 export default function CustomerDashboard() {
-  const [plans, setPlans] = useState([]);
-  const [recs, setRecs] = useState([]);
-  const server = "http://localhost:8080";
-  const token = localStorage.getItem("token");
+  const [plan, setPlan] = useState(null);
 
-  useEffect(() => {
-    axios.get(`${server}/plans`, { headers: { Authorization: `Bearer ${token}` } }).then(r => setPlans(r.data));
-    axios.get(`${server}/reco/mine`, { headers: { Authorization: `Bearer ${token}` } }).then(r => setRecs(r.data));
-  }, []);
+  const currentPlan = {
+    name: "Basic 5GB",
+    price: "$19.99",
+    data: "5GB",
+    calls: "500 min",
+    validity: "30 Days",
+  };
+
+  const recommendedPlan = {
+    name: "Unlimited Plus",
+    price: "$49.99",
+    data: "Unlimited",
+    calls: "Unlimited",
+    validity: "30 Days",
+  };
+
+  const handleRecommend = () => setPlan(recommendedPlan);
 
   return (
-    <div className="grid gap-4">
-      <div className="card">
-        <h2 className="text-xl font-semibold">Best-suited Plans</h2>
-        <div className="grid md:grid-cols-2 gap-3 mt-3">
-          {recs.map(r => <div key={r._id} className="p-2 border rounded">
-            <p><b>Plan:</b> {r.planCode}</p>
-            <p><b>Score:</b> {r.score?.toFixed?.(3)}</p>
-            <p className="text-sm text-slate-600">{r.rationale}</p>
-          </div>)}
-        </div>
+    <div className="p-6 space-y-6">
+      <h1 className="text-2xl font-bold text-center">Customer Dashboard</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <PlanCard title="Current Plan" plan={currentPlan} />
+        <PlanCard title="Recommended Plan" plan={plan} />
       </div>
-      <div className="card">
-        <h2 className="text-xl font-semibold">All Plans</h2>
-        <div className="grid md:grid-cols-2 gap-3 mt-3">
-          {plans.map(p => <PlanCard key={p._id} plan={p} />)}
+      {!plan && (
+        <div className="flex justify-center">
+          <Button onClick={handleRecommend}>Get Recommendation</Button>
         </div>
-      </div>
+      )}
     </div>
   );
 }

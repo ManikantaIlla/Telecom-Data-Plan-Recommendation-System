@@ -1,12 +1,22 @@
-import React from "react";
+import { Card, CardContent } from "@/components/ui/card";
 
-export default function PlanCard({ plan }) {
+export default function PlanCard({ title, plan }) {
   return (
-    <div className="card">
-      <h3 className="text-lg font-bold">{plan.name} ({plan.code})</h3>
-      <p>₹{plan.monthlyPrice} / month</p>
-      <p>{plan.dataGB} GB • {plan.voiceMinutes} min • {plan.sms} SMS</p>
-      <div className="mt-2 flex gap-2">{(plan.tags||[]).map(t => <span key={t} className="text-xs bg-slate-100 px-2 py-1 rounded">{t}</span>)}</div>
-    </div>
+    <Card className="shadow-lg rounded-2xl">
+      <CardContent className="p-4">
+        <h2 className="text-lg font-semibold mb-2">{title}</h2>
+        {plan ? (
+          <div className="space-y-1">
+            <p><b>{plan.name}</b></p>
+            <p>Price: {plan.price}</p>
+            <p>Data: {plan.data}</p>
+            <p>Calls: {plan.calls}</p>
+            <p>Validity: {plan.validity}</p>
+          </div>
+        ) : (
+          <p className="text-gray-500">No plan available</p>
+        )}
+      </CardContent>
+    </Card>
   );
 }

@@ -1,16 +1,8 @@
-import React from "react";
-
 export default function AdminDashboard() {
   return (
-    <div className="grid gap-4">
-      <div className="card">
-        <h2 className="text-xl font-semibold">Admin Dashboard</h2>
-        <ul className="list-disc pl-6 mt-2">
-          <li>Manage plans (CRUD)</li>
-          <li>Manage users & roles</li>
-          <li>System health: API, Mongo, ML service</li>
-        </ul>
-      </div>
+    <div className="p-6 text-center">
+      <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+      <p className="mt-4 text-gray-600">Manage users, roles, and system settings here.</p>
     </div>
   );
 }

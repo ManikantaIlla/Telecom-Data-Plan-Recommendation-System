@@ -1,16 +1,21 @@
-import React from "react";
+import { Button } from "@/components/ui/button";
+import { Download } from "lucide-react";
 
 export default function AnalystDashboard() {
+  const exportReport = (type) => {
+    alert(`Exporting report as ${type}`);
+  };
+
   return (
-    <div className="grid gap-4">
-      <div className="card">
-        <h2 className="text-xl font-semibold">Analyst Dashboard</h2>
-        <ul className="list-disc pl-6 mt-2">
-          <li>Cohort usage vs. current plan comparison</li>
-          <li>Export usage reports (CSV/PDF)</li>
-          <li>Drill-down by region/segment</li>
-        </ul>
-        <p className="text-sm text-slate-600 mt-2">Hook to Streamlit at <code>http://localhost:8501</code> for rich analytics.</p>
+    <div className="p-6 text-center">
+      <h1 className="text-2xl font-bold mb-6">Analyst Dashboard</h1>
+      <div className="flex justify-center gap-4">
+        <Button onClick={() => exportReport("PDF")}>
+          <Download className="mr-2 h-4 w-4" /> Export PDF
+        </Button>
+        <Button variant="outline" onClick={() => exportReport("CSV")}>
+          <Download className="mr-2 h-4 w-4" /> Export CSV
+        </Button>
       </div>
     </div>
   );
